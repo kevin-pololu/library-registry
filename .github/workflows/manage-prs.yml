@@ -80,7 +80,7 @@ jobs:
             https://api.github.com/repos/${{ github.repository_owner }}/${{ github.event.repository.name }}/pulls/${{ github.event.pull_request.number }}${{ github.event.issue.number }}
 
       - name: Upload diff file to workflow artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           path: ${{ steps.configuration.outputs.path }}/${{ steps.configuration.outputs.filename }}
           name: ${{ steps.configuration.outputs.artifact }}
@@ -316,7 +316,7 @@ jobs:
       # So it's necessary to use an alternative means of indicating that at least one submission failed the checks.
       - name: Upload failure flag artifact
         if: env.PASS == 'false'
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           if-no-files-found: error
           path: ${{ env.FAIL_FLAG_PATH }}
